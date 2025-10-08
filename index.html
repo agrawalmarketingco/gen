@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Business WhatsApp Sender</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      /* background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      color: #333; */
+      background: #121212; /* Matte Black */
+    color: #FFD700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      /* background: #fff;
+       */
+       background: #1e1e1e;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #4e54c8;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+      margin-top: 15px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #5a67d8, #6b46c1);
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px 15px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+  </style> -->
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+  
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212; /* Matte Black */
+      color: #FFD700;       /* Gold */
+      width: 100%;
+      overflow-x: hidden;
+    }
+  
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+  
+    .container {
+      background: #1e1e1e;
+      padding: 25px 20px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(255, 215, 0, 0.15);
+      max-width: 400px;
+      width: 100%;
+    }
+  
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #FFD700;
+      font-size: 22px;
+    }
+  
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+      margin-top: 15px;
+      color: #FFD700;
+      font-size: 15px;
+    }
+  
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      margin-bottom: 12px;
+      font-size: 16px;
+      background-color: #121212;
+      color: #FFD700;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+  
+    input[type="tel"] {
+      -webkit-appearance: none;
+      appearance: none;
+      outline: none;
+    }
+  
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #FFD700, #B8860B);
+      color: #121212;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      margin-top: 10px;
+    }
+  
+    button:hover {
+      background: linear-gradient(135deg, #FFCC00, #A0522D);
+    }
+  
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+  
+      .container {
+        padding: 20px 15px;
+      }
+  
+      h2 {
+        font-size: 20px;
+      }
+  
+      input, select {
+        font-size: 15px;
+        padding: 10px;
+      }
+  
+      button {
+        font-size: 15px;
+        padding: 12px;
+      }
+    }
+  </style>
+  
+</head>
+<body>
+  <div class="container">
+    <h2>Send Business WhatsApp</h2>
+    <label for="contact">Phone Number (with country code 91)</label>
+    <input type="tel" id="contact" placeholder="e.g. 9876543210" maxlength="10"/>
+
+    <label for="name">Select Name</label>
+    <select id="name">
+      <option value="Yatna Agrawal">Yatna Agrawal</option>
+      <option value="Anuj Pal">Anuj Pal</option>
+    </select>
+
+    <label for="company">Select Company</label>
+    <select id="company">
+      <option value="Agrawal Marketing Co.">Agrawal Marketing Co.</option>
+      <option value="Funfilla Events">Funfilla Events</option>
+      <option value="Agrawal Trading Co.">Agrawal Trading Co.</option>
+      <option value="Agrawal Handicrafts">Agrawal Handicrafts</option>
+    </select>
+
+    <button onclick="sendWhatsApp()">Send WhatsApp</button>
+  </div>
+
+  <script>
+    function sendWhatsApp() {
+      const phone = document.getElementById("contact").value.trim();
+      const name = document.getElementById("name").value;
+      const company = document.getElementById("company").value;
+  
+      if (phone.length !== 10 || isNaN(phone)) {
+        alert("Please enter a valid 10-digit number.");
+        return;
+      }
+  
+      const fullNumber = "91" + phone;
+  
+      // ✅ Website links per company
+      const websites = {
+        "Agrawal Marketing Co.": "[https://agrawalmarketingco.github.io/website]",
+        "Funfilla Events": "[https://funfillaevents.com]",
+        "Agrawal Trading Co.": "[https://agrawaltradingco.com]",
+        "Agrawal Handicrafts": "[https://agrawalhandicrafts.com]"
+      };
+  
+      // ✅ Portfolio links (could also be separate if needed)
+      const portfolios = {
+        "Agrawal Marketing Co.": "[https://portfolio.agrawalmarketing.com]",
+        "Funfilla Events": "[https://portfolio.funfillaevents.com]",
+        "Agrawal Trading Co.": "[https://portfolio.agrawaltradingco.com]",
+        "Agrawal Handicrafts": "[https://portfolio.agrawalhandicrafts.com]"
+      };
+  
+      // ✅ Card links per company
+      const cardLinks = {
+        "Agrawal Marketing Co.": {
+          "Yatna Agrawal": "https://drive.google.com/uc?export=download&id=1hlFYYjKSbGPLd-FzXgNnn5wiiV3js-Ti",
+          "Anuj Pal": "https://drive.google.com/uc?export=download&id=1PsYb3cQTxWsK-zDvgZ3u5gXFNCnMZt8Q"
+        },
+        "Funfilla Events": "https://drive.google.com/uc?export=download&id=1NSos5MqDQoB7fzuTTF1SP-NX_zCzQenu",
+        "Agrawal Trading Co.": "[https://cardlink.tradingco.com]",
+        "Agrawal Handicrafts": "[https://cardlink.handicrafts.com]"
+      };
+  
+      // Pick correct links
+      const website = websites[company];
+      const portfolio = portfolios[company];
+  
+      let cardLink = "";
+  
+      if (company === "Agrawal Marketing Co.") {
+        cardLink = cardLinks[company][name];
+      } else {
+        cardLink = cardLinks[company];
+      }
+  
+      // Build the message
+      let message = "";
+  
+      switch (company) {
+        case "Agrawal Marketing Co.":
+          message = `Hi 👋, this is from Agrawal Marketing Co. — India’s leading brand in Cup Marketing Solutions.
+  
+  We help businesses promote their brand through customized paper cups — a smart way to reach thousands of daily consumers effortlessly.
+  
+  Here are a few quick links for you:
+  1️⃣ Business Card: ${cardLink}
+  2️⃣ Official Website: ${website}
+  3️⃣ Portfolio (Photos & Videos): ${portfolio}
+  
+  Would love to collaborate and show how we can boost your brand visibility through innovative cup marketing campaigns.
+  
+  Looking forward to connecting with you ☕
+  — Team Agrawal Marketing Co.`;
+          break;
+  
+        case "Funfilla Events":
+          message = `Hi 👋, this is from Funfilla Events — your trusted partner for complete event management solutions.
+  
+  We specialize in creating, managing, and executing events with a perfect balance of creativity and precision.
+  From planning to on-ground management, our team ensures every detail is handled seamlessly.
+  
+  We also provide event HRs, professional staff, and sponsorship solutions, making each project smooth, organized, and impactful.
+  
+  Here are a few quick links for you:
+  1️⃣ Business Card: ${cardLink}
+  2️⃣ Website: ${website}
+  3️⃣ Portfolio (Photos & Videos): ${portfolio}
+  
+  Let’s connect and build something extraordinary together. ✨
+  — Team Funfilla Events
+  (Where ideas turn into experiences.)`;
+          break;
+  
+        case "Agrawal Trading Co.":
+          message = `Namaste 🙏, this is from Agrawal Trading Co. — your complete source for everyday essentials, décor, and disposables.
+  
+  We deal in a wide range of products for home, business, and events, including:
+  🟢 Paper & Leaf Plates, Cups, Bowls, Spoons, Bamboo Sticks
+  🟢 Gift & Party Décor Items, Balloons, Ribbons, Crowns, Props
+  🟢 Pooja & Festival Items, Haldi & Mandir Décor, Diyas, Torans
+  🟢 Packaging Materials, Carry Bags, Containers, Cling Film, Foils
+  
+  Available in retail and wholesale, with a focus on quality, affordability, and timely supply.
+  Whether you run a tea stall, event business, or retail outlet — we’re here to serve your every supply need.
+  
+  👇 Quick Links:
+  1️⃣ Business Card: ${cardLink}
+  2️⃣ Website: ${website}
+  3️⃣ Product Portfolio: ${portfolio}
+  
+  Quality. Variety. Trust.
+  — Team Agrawal Trading Co. 🏪`;
+          break;
+  
+        case "Agrawal Handicrafts":
+          message = `Namaste 🙏, this is from Agrawal Handicrafts — creators of divine luxury.
+  
+  We specialize in German Silver temples, marble moortis, and premium handcrafted décor — each piece crafted with precision, devotion, and artistry.
+  
+  Our signature German Silver carvings bring a royal touch that turns every mandir into a timeless masterpiece.
+  Along with temples, we create custom carved furniture and artistic designs that redefine elegance and spirituality together.
+  
+  Every creation from Agrawal Handicrafts represents heritage craftsmanship, luxury detailing, and divine beauty — designed to elevate both space and spirit.
+  
+  Here are a few quick links for you 👇
+  1️⃣ Business Card: ${cardLink}
+  2️⃣ Website: ${website}
+  3️⃣ Portfolio (Photos & Videos): ${portfolio}
+  
+  Let’s create something eternal, elegant, and divine for your space. ✨
+  — Team Agrawal Handicrafts
+  (Where Art, Luxury & Devotion come together.)`;
+          break;
+      }
+  
+      // Send message
+      const encodedMessage = encodeURIComponent(message);
+      const waLink = `https://wa.me/${fullNumber}?text=${encodedMessage}`;
+  
+      window.open(waLink, "_blank");
+    }
+  </script>
+  
+</body>
+</html>
