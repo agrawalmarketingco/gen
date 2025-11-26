@@ -197,7 +197,7 @@
   <div class="container">
     <h2>Send Business WhatsApp</h2>
     <label for="contact">Phone Number (with country code 91)</label>
-    <input type="tel" id="contact" placeholder="e.g. 9876543210" maxlength="10"/>
+    <input type="tel" id="contact" placeholder="e.g. 9876543210" />
 
     <label for="name">Select Name</label>
     <select id="name">
@@ -225,12 +225,20 @@
       const name = document.getElementById("name").value;
       const company = document.getElementById("company").value;
   
-      if (phone.length !== 10 || isNaN(phone)) {
-        alert("Please enter a valid 10-digit number.");
+      const cleaned = phone.replace(/\D/g, ""); // removes + and spaces
+
+      if (!(cleaned.length === 10 || cleaned.length === 12)) {
+        alert("Please enter a valid number (10 digits or +91 with number).");
         return;
       }
+
   
-      const fullNumber = "91" + phone;
+      let fullNumber = cleaned;
+      
+      if (cleaned.length === 10) {
+        fullNumber = "91" + cleaned; // add +91 automatically
+      }
+
   
       // ✅ Website links per company
       const websites = {
@@ -359,5 +367,6 @@
   </script>
 </body>
 </html>
+
 
 
